@@ -35,19 +35,19 @@ public class Tree<E extends Comparable<? super E>> implements Iterable<E> {
     @Override
     public Iterator<E> iterator() {
         List<E> list = new ArrayList<>();
-        BiConsumer<BiConsumer, Node<E>> cf = (f, c) -> {
-           if (c.left != null) {
-                f.accept(f, c.left);
+        BiConsumer<BiConsumer, Node<E>> traverse = (consumer, node) -> {
+           if (node.left != null) {
+                consumer.accept(consumer, node.left);
             }
-            list.add(c.data);
+            list.add(node.data);
 
             
-            if (c.right != null) {
-                f.accept(f, c.right);
+            if (node.right != null) {
+                consumer.accept(consumer, node.right);
             }
         };
 
-        cf.accept(cf, root);
+        traverse.accept(traverse, root);
         return list.iterator();
     }
 
@@ -63,21 +63,21 @@ public class Tree<E extends Comparable<? super E>> implements Iterable<E> {
         }
 
         Node<E> parent = null;
-        Node<E> traveller = root;
-        boolean leftDirection = false;
+        Node<E> current = root;
+        boolean isLeft = false;
 
-        while (traveller != null) {
-            parent = traveller;
-            if (data.compareTo(traveller.data) < 0) {
-                traveller = traveller.left;
-                leftDirection = true;
+        while (current != null) {
+            parent = current;
+            if (data.compareTo(current.data) < 0) {
+                current = current.left;
+                isLeft = true;
             } else {
-                traveller = traveller.right;
-                leftDirection = false;
+                current = current.right;
+                isLeft = false;
             }
         }
 
-        if (leftDirection) {
+        if (isLeft) {
             parent.left = new Node<>(data);
         } else {
             parent.right = new Node<>(data);
@@ -86,52 +86,52 @@ public class Tree<E extends Comparable<? super E>> implements Iterable<E> {
 
     public void erase(E data) {
         Node<E> parent = null;
-        Node<E> traveller = root;
-        boolean leftDirection = false;
+        Node<E> current = root;
+        boolean isLeft = false;
 
-        while (traveller.data.compareTo(data) != 0) {
-            parent = traveller;
-            if (data.compareTo(traveller.data) < 0) {
-                traveller = traveller.left;
-                leftDirection = true;
+        while (current.data.compareTo(data) != 0) {
+            parent = current;
+            if (data.compareTo(current.data) < 0) {
+                current = current.left;
+                isLeft = true;
             } else {
-                traveller = traveller.right;
-                leftDirection = false;
+                current = current.right;
+                isLeft = false;
             }
         }
 
-        if (traveller.right == null && traveller.left == null) {
-            if (leftDirection) {
+        if (current.right == null && current.left == null) {
+            if (isLeft) {
                 parent.left = null;
             } else {
                 parent.right = null;
             }
-        } else if (traveller.left != null) {
-            Node<E> subparent = traveller;
-            Node<E> removal = traveller.left;
+        } else if (current.left != null) {
+            Node<E> subparent = current;
+            Node<E> removal = current.left;
 
             while (removal.right != null) {
                 subparent = removal;
                 removal = removal.right;
             }
 
-            traveller.data = removal.data;
-            if (subparent != traveller) {
+            current.data = removal.data;
+            if (subparent != current) {
                 subparent.left = removal.left;
             } else {
                 subparent.right = removal.left;
             }
-        } else if (traveller.right != null) {
-            Node<E> subparent = traveller;
-            Node<E> removal = traveller.right;
+        } else if (current.right != null) {
+            Node<E> subparent = current;
+            Node<E> removal = current.right;
 
             while (removal.left != null) {
                 subparent = removal;
                 removal = removal.left;
             }
 
-            traveller.data = removal.data;
-            if (subparent == traveller) {
+            current.data = removal.data;
+            if (subparent == current) {
                 subparent.right = removal.right;
             } else {
                 subparent.left = removal.right;
@@ -139,7 +139,7 @@ public class Tree<E extends Comparable<? super E>> implements Iterable<E> {
         }
     }
 
-    public boolean contaix(E data) {
+    public boolean contains(E data) {
         Node<E> traveller = root;
 
         while (traveller != null) {

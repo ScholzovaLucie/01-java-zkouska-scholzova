@@ -27,7 +27,7 @@ public class Calendar implements Iterable<EventSet>{
     
     public void addEvent(Event event) {
         EventSet eventSet = new EventSet(event.getDate());
-        if (calendar.contaix(eventSet)) {
+        if (calendar.contains(eventSet)) {
             eventSet = calendar.get(eventSet);
         } else {
             calendar.add(eventSet);
