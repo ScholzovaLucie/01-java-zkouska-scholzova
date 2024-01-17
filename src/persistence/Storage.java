@@ -20,17 +20,18 @@ import java.util.List;
  */
 public class Storage {
     
+    private final File storage = new File("./storage");
+    
     public void store(Object object) {
-        File storage = new File("./storage");
         storage.mkdir();
         
-        File classfolder = new File(storage.getAbsolutePath() + "/" + object.getClass().getName());
-        classfolder.mkdir();
+        File classFolder = new File(storage.getAbsolutePath() + "/" + object.getClass().getName());
+        classFolder.mkdir();
         
-        File objectfile = new File(classfolder + "/" + object.hashCode());
+        File objectFile = new File(classFolder + "/" + object.hashCode());
         ObjectOutputStream objectOutputStream = null;
         try {
-            objectOutputStream = new ObjectOutputStream(new FileOutputStream(objectfile));
+            objectOutputStream = new ObjectOutputStream(new FileOutputStream(objectFile));
             objectOutputStream.writeObject(object);
             objectOutputStream.close();
         } catch (IOException ex) {
@@ -38,8 +39,6 @@ public class Storage {
     }
     
     public void unstore(Object object) {
-        File storage = new File("./storage");
-        
         File classFolder = new File(storage.getAbsolutePath() + "/" + object.getClass().getName());
         
         File objectfile = new File(classFolder + "/" + object.hashCode());
@@ -47,7 +46,6 @@ public class Storage {
     }
     
     public <T> List<T> load(Class<T> clazz) {
-        File storage = new File("./storage");
         File classFolder = new File(storage.getAbsolutePath() + "/" + clazz.getName());
         
         List<T> list = new ArrayList<>();
