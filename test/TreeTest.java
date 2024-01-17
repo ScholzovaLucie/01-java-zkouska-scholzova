@@ -4,6 +4,9 @@
  */
 
 import calendar.Tree;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -92,4 +95,46 @@ public class TreeTest {
         assertFalse(tree.iterator().hasNext());
     }
 
+    
+    @Test
+    void testIteratorOverEmptyTree() {
+        Iterator<Integer> iterator = tree.iterator();
+        assertFalse(iterator.hasNext(), "Iterator over an empty tree should not have next elements.");
+    }
+
+    @Test
+    void testIteratorOverNonEmptyTree() {
+        tree.add(50);
+        tree.add(30);
+        tree.add(70);
+        
+        List<Integer> expectedElements = List.of(30, 50, 70);
+        List<Integer> actualElements = new ArrayList<>();
+
+        Iterator<Integer> iterator = tree.iterator();
+        while (iterator.hasNext()) {
+            actualElements.add(iterator.next());
+        }
+
+        assertEquals(expectedElements, actualElements, "Iterator should traverse the tree in-order.");
+    }
+
+    @Test
+    void testIteratorOverNonEmptyTreeWithAdditions() {
+        tree.add(50);
+        tree.add(30);
+        tree.add(70);
+        tree.add(40);
+        tree.add(60);
+
+        List<Integer> expectedElements = List.of(30, 40, 50, 60, 70);
+        List<Integer> actualElements = new ArrayList<>();
+
+        Iterator<Integer> iterator = tree.iterator();
+        while (iterator.hasNext()) {
+            actualElements.add(iterator.next());
+        }
+
+        assertEquals(expectedElements, actualElements, "Iterator should traverse the modified tree in-order.");
+    }
 }
