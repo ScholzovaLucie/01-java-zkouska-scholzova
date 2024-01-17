@@ -27,22 +27,22 @@ public class Calendar implements Iterable<ESet>{
         return calendar.iterator();
     }
     
-    public void addEv(Event ev) {
-        ESet es = new ESet(ev.getDate());
-        if (calendar.contaix(es)) {
-            es = calendar.get(es);
+    public void addEv(Event event) {
+        ESet eventESet = new ESet(event.getDate());
+        if (calendar.contaix(eventESet)) {
+            eventESet = calendar.get(eventESet);
         } else {
-            calendar.add(es);
+            calendar.add(eventESet);
         }
         
-        es.evset.add(ev);
+        eventESet.evset.add(event);
     }
     
     public ESet eventsList(Date date) {
         return calendar.get(new ESet(date));
     }
     
-    public void DeleteAll(Date date) {
+    public void deleteAll(Date date) {
         calendar.erase(new ESet(date));
     }
     

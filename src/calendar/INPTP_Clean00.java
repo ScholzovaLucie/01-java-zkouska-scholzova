@@ -55,7 +55,7 @@ public class INPTP_Clean00 {
             System.out.println(c1.evset);
         }
 
-        c.DeleteAll(new Date(117, 6, 1));
+        c.deleteAll(new Date(117, 6, 1));
         System.out.println("");
 
         for (ESet c1 : c) {
