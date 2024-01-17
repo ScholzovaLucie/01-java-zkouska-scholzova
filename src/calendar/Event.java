@@ -17,16 +17,16 @@ public class Event implements Comparable<Event>, Serializable {
 
     private Date date;
     private String title;
-  
-
-    @Override
-    public int compareTo(Event o) {
-        return date.compareTo(o.date);
-    }
+    private String text;
 
     public Event(Date date, String title) {
         this.date = date;
         this.title = title;
+    }
+
+    @Override
+    public int compareTo(Event o) {
+        return date.compareTo(o.date);
     }
 
 
@@ -44,8 +44,18 @@ public class Event implements Comparable<Event>, Serializable {
         }
         return true;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.date);
+        return hash;
+    }
     
-    private String text;
+    @Override
+    public String toString() {
+        return "Event{" + "date=" + date + ", title=" + title + ", text=" + text + '}';
+    }
   
     public Date getDate() {
         return date;
@@ -57,17 +67,6 @@ public class Event implements Comparable<Event>, Serializable {
 
     public String getText() {
         return text;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.date);
-        return hash;
-    }
-    @Override
-    public String toString() {
-        return "Event{" + "date=" + date + ", title=" + title + ", text=" + text + '}';
     }
 
 }
