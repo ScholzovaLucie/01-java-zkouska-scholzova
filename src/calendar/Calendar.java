@@ -14,36 +14,36 @@ import java.util.Set;
  *
  * @author rodi0878
  */
-public class Calendar implements Iterable<ESet>{
+public class Calendar implements Iterable<EventSet>{
 
-    private Tree<ESet> calendar;
+    private Tree<EventSet> calendar;
 
     public Calendar() {
         calendar = new Tree<>();
     }
 
     @Override
-    public Iterator<ESet> iterator() {
+    public Iterator<EventSet> iterator() {
         return calendar.iterator();
     }
     
-    public void addEv(Event event) {
-        ESet eventESet = new ESet(event.getDate());
-        if (calendar.contaix(eventESet)) {
-            eventESet = calendar.get(eventESet);
+    public void addEvent(Event event) {
+        EventSet eventSet = new EventSet(event.getDate());
+        if (calendar.contaix(eventSet)) {
+            eventSet = calendar.get(eventSet);
         } else {
-            calendar.add(eventESet);
+            calendar.add(eventSet);
         }
         
-        eventESet.eventSet.add(event);
+        eventSet.eventSet.add(event);
     }
     
-    public ESet eventsList(Date date) {
-        return calendar.get(new ESet(date));
+    public EventSet getEvents(Date date) {
+        return calendar.get(new EventSet(date));
     }
     
-    public void deleteAll(Date date) {
-        calendar.erase(new ESet(date));
+    public void deleteAllEvents(Date date) {
+        calendar.erase(new EventSet(date));
     }
     
     

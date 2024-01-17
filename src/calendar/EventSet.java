@@ -13,21 +13,21 @@ import java.util.Set;
  *
  * @author rodi0878
  */
-public class ESet implements Comparable<ESet> {
+public class EventSet implements Comparable<EventSet> {
     public Date date;
     public Set<Event> eventSet;
 
-    public ESet() {
+    public EventSet() {
         eventSet = new HashSet<>();
     }
 
-    public ESet(Date date) {
+    public EventSet(Date date) {
         this.date = date;
         this.eventSet = new HashSet<>();
     }
 
     @Override
-    public int compareTo(ESet comperedESet) {
+    public int compareTo(EventSet comperedESet) {
         return date.compareTo(comperedESet.date);
     }
     

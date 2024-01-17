@@ -43,22 +43,22 @@ public class INPTP_Clean00 {
         //////////////////////////////////
         
         Calendar c = new Calendar();
-        c.addEv(new Event(new Date(117, 6, 1), "1-1"));
-        c.addEv(new Event(new Date(117, 6, 2), "2-1"));
-        c.addEv(new Event(new Date(117, 6, 3), "3-1"));
-        c.addEv(new Event(new Date(117, 6, 1), "1-2"));
-        c.addEv(new Event(new Date(117, 6, 1), "1-3"));
-        c.addEv(new Event(new Date(117, 6, 1), "1-4"));
+        c.addEvent(new Event(new Date(117, 6, 1), "1-1"));
+        c.addEvent(new Event(new Date(117, 6, 2), "2-1"));
+        c.addEvent(new Event(new Date(117, 6, 3), "3-1"));
+        c.addEvent(new Event(new Date(117, 6, 1), "1-2"));
+        c.addEvent(new Event(new Date(117, 6, 1), "1-3"));
+        c.addEvent(new Event(new Date(117, 6, 1), "1-4"));
 
-        for (ESet c1 : c) {
+        for (EventSet c1 : c) {
             System.out.println(c1.date);
             System.out.println(c1.eventSet);
         }
 
-        c.deleteAll(new Date(117, 6, 1));
+        c.deleteAllEvents(new Date(117, 6, 1));
         System.out.println("");
 
-        for (ESet c1 : c) {
+        for (EventSet c1 : c) {
             System.out.println(c1.date);
             System.out.println(c1.eventSet);
         }
