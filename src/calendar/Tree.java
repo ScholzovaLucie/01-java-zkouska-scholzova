@@ -7,23 +7,9 @@ import java.util.function.BiConsumer;
 
 public class Tree<E extends Comparable<? super E>> implements Iterable<E> {
 
-    @Override
-    public Iterator<E> iterator() {
-        List<E> list = new ArrayList<>();
-        BiConsumer<BiConsumer, Node<E>> cf = (f, c) -> {
-           if (c.left != null) {
-                f.accept(f, c.left);
-            }
-            list.add(c.data);
+    private Node<E> root;
 
-            
-            if (c.right != null) {
-                f.accept(f, c.right);
-            }
-        };
-
-        cf.accept(cf, root);
-        return list.iterator();
+    public Tree() {
     }
 
     private static class Node<E> {
@@ -46,12 +32,29 @@ public class Tree<E extends Comparable<? super E>> implements Iterable<E> {
 
     }
 
-    
+    @Override
+    public Iterator<E> iterator() {
+        List<E> list = new ArrayList<>();
+        BiConsumer<BiConsumer, Node<E>> cf = (f, c) -> {
+           if (c.left != null) {
+                f.accept(f, c.left);
+            }
+            list.add(c.data);
 
-    public Tree() {
+            
+            if (c.right != null) {
+                f.accept(f, c.right);
+            }
+        };
+
+        cf.accept(cf, root);
+        return list.iterator();
     }
-    
-    private Node<E> root;
+
+    @Override
+    public String toString() {
+        return "Tree{" + "root=" + root + '}';
+    }
 
     public void add(E data) {
         if (root == null) {
@@ -170,11 +173,6 @@ public class Tree<E extends Comparable<? super E>> implements Iterable<E> {
         }
 
         return null;
-    }
-
-    @Override
-    public String toString() {
-        return "Tree{" + "root=" + root + '}';
     }
 
 }
