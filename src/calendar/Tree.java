@@ -77,11 +77,14 @@ public class Tree<E extends Comparable<? super E>> implements Iterable<E> {
             }
         }
 
-        if (isLeft) {
-            parent.left = new Node<>(data);
-        } else {
-            parent.right = new Node<>(data);
+        if (parent != null){
+            if (isLeft) {
+                parent.left = new Node<>(data);
+            } else {
+                parent.right = new Node<>(data);
+            } 
         }
+        
     }
 
     public void erase(E data) {
