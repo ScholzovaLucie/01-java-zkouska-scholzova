@@ -15,8 +15,8 @@ import java.util.Objects;
  */
 public class Event implements Comparable<Event>, Serializable {
 
-    private Date date;
-    private String title;
+    private final Date date;
+    private final String title;
     private String text;
 
     public Event(Date date, String title) {
