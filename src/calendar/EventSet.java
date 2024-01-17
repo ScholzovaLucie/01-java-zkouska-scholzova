@@ -26,9 +26,16 @@ public class EventSet implements Comparable<EventSet> {
         this.eventSet = new HashSet<>();
     }
 
+    /**
+     * Compares two EventSet objects based on their dates.
+     * 
+     * @param comparedEventSet The EventSet to compare with.
+     * @return A negative integer, zero, or a positive integer as this EventSet
+     *         is less than, equal to, or greater than the compared EventSet.
+     */
     @Override
-    public int compareTo(EventSet comperedESet) {
-        return date.compareTo(comperedESet.date);
+    public int compareTo(EventSet comparedEventSet) {
+        return date.compareTo(comparedEventSet.date);
     }
     
 }

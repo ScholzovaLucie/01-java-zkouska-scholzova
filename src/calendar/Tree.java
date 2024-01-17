@@ -32,6 +32,11 @@ public class Tree<E extends Comparable<? super E>> implements Iterable<E> {
 
     }
 
+    /**
+     * Returns an iterator for iterating over the elements of the tree.
+     *
+     * @return Iterator for the elements in the tree.
+     */
     @Override
     public Iterator<E> iterator() {
         List<E> list = new ArrayList<>();
@@ -56,6 +61,11 @@ public class Tree<E extends Comparable<? super E>> implements Iterable<E> {
         return "Tree{" + "root=" + root + '}';
     }
 
+    /**
+     * Adds a new element to the tree.
+     *
+     * @param data The element to be added to the tree.
+     */
     public void add(E data) {
         if (root == null) {
             root = new Node<>(data);
@@ -87,6 +97,11 @@ public class Tree<E extends Comparable<? super E>> implements Iterable<E> {
         
     }
 
+    /**
+     * Removes an element from the tree.
+     *
+     * @param data The element to be removed from the tree.
+     */
     public void erase(E data) {
         removeNode(root, data);
     }
@@ -159,6 +174,12 @@ public class Tree<E extends Comparable<? super E>> implements Iterable<E> {
         }
     }
 
+    /**
+     * Checks if the tree contains a specific element.
+     *
+     * @param data The element to check for in the tree.
+     * @return True if the tree contains the element, false otherwise.
+     */
     public boolean contains(E data) {
         Node<E> current = root;
 
@@ -177,6 +198,12 @@ public class Tree<E extends Comparable<? super E>> implements Iterable<E> {
         return false;
     }
 
+    /**
+     * Gets the element with a specific value from the tree.
+     *
+     * @param data The value of the element to retrieve.
+     * @return The element with the specified value, or null if not found.
+     */
     public E get(E data) {
         Node<E> current = root;
 
