@@ -15,20 +15,20 @@ import java.util.Set;
  */
 public class ESet implements Comparable<ESet> {
     public Date date;
-    public Set<Event> evset;
+    public Set<Event> eventSet;
 
     public ESet() {
-        evset = new HashSet<>();
+        eventSet = new HashSet<>();
     }
 
     public ESet(Date date) {
         this.date = date;
-        this.evset = new HashSet<>();
+        this.eventSet = new HashSet<>();
     }
 
     @Override
-    public int compareTo(ESet o) {
-        return date.compareTo(o.date);
+    public int compareTo(ESet comperedESet) {
+        return date.compareTo(comperedESet.date);
     }
     
 }

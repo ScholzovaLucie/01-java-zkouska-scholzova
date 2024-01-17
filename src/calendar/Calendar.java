@@ -35,7 +35,7 @@ public class Calendar implements Iterable<ESet>{
             calendar.add(eventESet);
         }
         
-        eventESet.evset.add(event);
+        eventESet.eventSet.add(event);
     }
     
     public ESet eventsList(Date date) {

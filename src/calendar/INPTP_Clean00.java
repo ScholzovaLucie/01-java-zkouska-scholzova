@@ -52,7 +52,7 @@ public class INPTP_Clean00 {
 
         for (ESet c1 : c) {
             System.out.println(c1.date);
-            System.out.println(c1.evset);
+            System.out.println(c1.eventSet);
         }
 
         c.deleteAll(new Date(117, 6, 1));
@@ -60,7 +60,7 @@ public class INPTP_Clean00 {
 
         for (ESet c1 : c) {
             System.out.println(c1.date);
-            System.out.println(c1.evset);
+            System.out.println(c1.eventSet);
         }
 
     }
