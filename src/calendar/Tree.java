@@ -140,17 +140,17 @@ public class Tree<E extends Comparable<? super E>> implements Iterable<E> {
     }
 
     public boolean contains(E data) {
-        Node<E> traveller = root;
+        Node<E> current = root;
 
-        while (traveller != null) {
-            if (data.compareTo(traveller.data) == 0) {
+        while (current != null) {
+            if (data.compareTo(current.data) == 0) {
                 return true;
             }
 
-            if (data.compareTo(traveller.data) < 0) {
-                traveller = traveller.left;
+            if (data.compareTo(current.data) < 0) {
+                current = current.left;
             } else {
-                traveller = traveller.right;
+                current = current.right;
             }
         }
 
@@ -158,17 +158,17 @@ public class Tree<E extends Comparable<? super E>> implements Iterable<E> {
     }
 
     public E get(E data) {
-        Node<E> traveller = root;
+        Node<E> current = root;
 
-        while (traveller != null) {
-            if (data.compareTo(traveller.data) == 0) {
-                return traveller.data;
+        while (current != null) {
+            if (data.compareTo(current.data) == 0) {
+                return current.data;
             }
 
-            if (data.compareTo(traveller.data) < 0) {
-                traveller = traveller.left;
+            if (data.compareTo(current.data) < 0) {
+                current = current.left;
             } else {
-                traveller = traveller.right;
+                current = current.right;
             }
         }
 
