@@ -16,19 +16,16 @@ import java.util.Set;
  */
 public class Calendar implements Iterable<ESet>{
 
-    @Override
-    public Iterator<ESet> iterator() {
-        return calendar.iterator();
-    }
-    
-    
     private Tree<ESet> calendar;
 
     public Calendar() {
         calendar = new Tree<>();
     }
-    
-    
+
+    @Override
+    public Iterator<ESet> iterator() {
+        return calendar.iterator();
+    }
     
     public void addEv(Event ev) {
         ESet es = new ESet(ev.getDate());
