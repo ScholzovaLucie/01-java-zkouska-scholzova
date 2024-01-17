@@ -22,6 +22,11 @@ public class Storage {
     
     private final File storage = new File("./storage");
     
+    /**
+     * Stores the provided object into a file based on its class name.
+     * 
+     * @param object The object to be stored.
+     */
     public void store(Object object) {
         storage.mkdir();
         
@@ -38,6 +43,11 @@ public class Storage {
         }
     }
     
+    /**
+     * Removes the stored file associated with the provided object.
+     * 
+     * @param object The object to be removed from storage.
+     */
     public void unstore(Object object) {
         File classFolder = new File(storage.getAbsolutePath() + "/" + object.getClass().getName());
         
@@ -45,6 +55,12 @@ public class Storage {
         objectfile.delete();
     }
     
+     /**
+     * Loads and returns a list of objects of a specified class from storage.
+     * 
+     * @param clazz The class type of objects to load.
+     * @return A list of loaded objects.
+     */
     public <T> List<T> load(Class<T> clazz) {
         File classFolder = new File(storage.getAbsolutePath() + "/" + clazz.getName());
         
