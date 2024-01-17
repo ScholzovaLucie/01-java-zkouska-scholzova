@@ -85,8 +85,11 @@ public class Tree<E extends Comparable<? super E>> implements Iterable<E> {
     }
 
     public void erase(E data) {
+        removeNode(root, data);
+    }
+    
+    private Node<E> removeNode(Node<E> current, E data) {
         Node<E> parent = null;
-        Node<E> current = root;
         boolean isLeft = false;
 
         while (current.data.compareTo(data) != 0) {
@@ -101,41 +104,55 @@ public class Tree<E extends Comparable<? super E>> implements Iterable<E> {
         }
 
         if (current.right == null && current.left == null) {
-            if (isLeft) {
-                parent.left = null;
-            } else {
-                parent.right = null;
-            }
+            removeLeafNode(parent, isLeft);
         } else if (current.left != null) {
-            Node<E> subparent = current;
-            Node<E> removal = current.left;
-
-            while (removal.right != null) {
-                subparent = removal;
-                removal = removal.right;
-            }
-
-            current.data = removal.data;
-            if (subparent != current) {
-                subparent.left = removal.left;
-            } else {
-                subparent.right = removal.left;
-            }
+            removeNodeWithLeftChild(current);
         } else if (current.right != null) {
-            Node<E> subparent = current;
-            Node<E> removal = current.right;
+            removeNodeWithRightChild(current);
+        }
 
-            while (removal.left != null) {
-                subparent = removal;
-                removal = removal.left;
-            }
+        return parent;
+    }
+    
+    private void removeLeafNode(Node<E> parent, boolean isLeft) {
+        if (isLeft) {
+            parent.left = null;
+        } else {
+            parent.right = null;
+        }
+}
+    
+    private void removeNodeWithLeftChild(Node<E> current) {
+        Node<E> subparent = current;
+        Node<E> removal = current.left;
 
-            current.data = removal.data;
-            if (subparent == current) {
-                subparent.right = removal.right;
-            } else {
-                subparent.left = removal.right;
-            }
+        while (removal.right != null) {
+            subparent = removal;
+            removal = removal.right;
+        }
+
+        current.data = removal.data;
+        if (subparent != current) {
+            subparent.left = removal.left;
+        } else {
+            subparent.right = removal.left;
+        }
+    }
+
+    private void removeNodeWithRightChild(Node<E> current) {
+        Node<E> subparent = current;
+        Node<E> removal = current.right;
+
+        while (removal.left != null) {
+            subparent = removal;
+            removal = removal.left;
+        }
+
+        current.data = removal.data;
+        if (subparent == current) {
+            subparent.right = removal.right;
+        } else {
+            subparent.left = removal.right;
         }
     }
 
