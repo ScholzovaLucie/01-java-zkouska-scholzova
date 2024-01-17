@@ -5,11 +5,7 @@
 
 import calendar.Calendar;
 import calendar.Event;
-import calendar.EventSet;
-import calendar.Tree;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
