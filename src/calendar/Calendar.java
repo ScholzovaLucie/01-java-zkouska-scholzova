@@ -16,7 +16,7 @@ import java.util.Set;
  */
 public class Calendar implements Iterable<EventSet>{
 
-    private Tree<EventSet> calendar;
+    private final Tree<EventSet> calendar;
 
     public Calendar() {
         calendar = new Tree<>();
